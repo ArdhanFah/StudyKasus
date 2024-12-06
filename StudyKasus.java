@@ -117,8 +117,8 @@ public class StudyKasus {
     public static void AnalisisData(){
         System.out.println("--- Analisis Data KRS ---");
         int count = 0;
-        for(int i = 0; i < maxMhs; i++){
-            if(totalSKS[i] < 20){
+        for(int  i = 0; i < maxMhs; i++){
+            if(totalSKS[i] < 20 && totalSKS[i] != 0){
                 count++;
             }
         }
