@@ -66,8 +66,8 @@ public class StudyKasusfix {
                     System.out.println("SKS yang anda masukkan tidak valid! masukkan (1-3)");
                     continue;  
                 } else {
-                    sksMhs[mahasiswa][0] = sks;     // ini masuk tabel      // Menampilkan total SKS yang diinputkan per mahasiswa dan reser saat perulangan dimulai
-                    sksTotal += sks;
+                    sksMhs[mahasiswa][0] = sks;     // ini masuk tabel      
+                    sksTotal += sks;                // Menampilkan total SKS yang diinputkan per mahasiswa dan reser saat perulangan dimulai
                     totalSKS[indekSks] += sks; // ini berfungsi untuk function tampil data nantinya
                 }
 
@@ -80,7 +80,6 @@ public class StudyKasusfix {
                     indekSks++;
                     break;
                 }
-
              
                 if(sksTotal >= 24){
                     System.out.println("Total SKS yang diambil: " + totalSKS[indekSks]);
@@ -89,8 +88,6 @@ public class StudyKasusfix {
 
                 indeksKrs++; 
                 mahasiswa++;
-                
-                
             }  
             break;
         }
@@ -113,14 +110,14 @@ public class StudyKasusfix {
                 }
                 System.out.println();
                  
-                for(int j = 0; j < dataKrs[i].length; j++){
-                    if (dataKrs[i][j] != null) {
+                for(int j = 0; j < dataKrs.length; j++){
+                    if (dataKrs[j][0] != null) {
                         System.out.print("\t" + dataMhs[index][0] + "\t\t" + dataMhs[index][1]); 
-                    }
-                    System.out.print("\t\t" + dataKrs[tempat][0] + "\t\t" + dataKrs[tempat][1]);
-                    System.out.print("\t\t\t\t" + sksMhs[tempat][0]);
-                    System.out.println();
-                    tempat++;
+                        System.out.print("\t\t" + dataKrs[tempat][0] + "\t\t" + dataKrs[tempat][1]);
+                        System.out.print("\t\t\t\t" + sksMhs[tempat][0]);
+                        System.out.println();
+                        tempat++;
+                    }       
                 }
                 System.out.println();
                 System.out.print("Total SKS: " + totalSKS[0]);
