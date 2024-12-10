@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class StudyKasusfix {
@@ -86,8 +85,8 @@ public class StudyKasusfix {
                     break;
                 }
 
-                indeksKrs++; 
-                mahasiswa++;
+                indeksKrs++;    // Pindah ke indeks berikutnya untuk menyimpan data mata kuliah baru.
+                mahasiswa++;    // Berpindah ke mahasiswa berikutnya setelah menyelesaikan input.     
             }  
             break;
         }
