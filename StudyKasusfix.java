@@ -7,18 +7,14 @@ public class StudyKasusfix {
     static String[][] dataMhs = new String[maxMhs][2];      // Array dimensi 1 berisi Max Mahasiswa (Baris) array dimensi 2 untuk NIM dan Nama
     static String dataKrs[][] = new String[maxMhs][2];      // Array dimensi 1 berisi Max Mahasiswa (Baris) array dimensi 2 untuk KodeMK dan Nama Mata Kuliah 
     static int totalSKS[] = new int[maxMhs];                // Array untuk menyimpan jumlah Total SKS per Mahasiswa
-    static int sksMhs[] = new int[maxMhs];                  // Array untuk menyimpan jumkah sks per matkul 
+    static int sksMhs[][] = new int[maxMhs][1];                  // Array  2d untuk menyimpan jumkah sks per matkul 
+    static int indekSks = 0;
     static int mahasiswa = 0;        
     static int indeksKrs = 0;                               // Agar tidak saling menimpa saat input tambahData 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String searchMahasiswa = "";
         
-        pilihMenu(sc, searchMahasiswa);
- 
-    }
-
-    public static void pilihMenu(Scanner sc, String searchMahasiswa){
         while (true) {
             int pilihan = 0;    // Untuk menyimpan pilihan pengguna dan mereset pilihan saat pilihan menu dijalankan
 
@@ -44,6 +40,7 @@ public class StudyKasusfix {
                     continue;
             }
         }
+ 
     }
 
     public static void TambahData(Scanner sc){
@@ -65,30 +62,35 @@ public class StudyKasusfix {
 
                 System.out.print("Jumlah SKS (1-3): ");
                 sks = sc.nextInt();
-                // System.out.println(Arrays.deepToString(dataKrs));
                 if(sks < 1 || sks > 3){
                     System.out.println("SKS yang anda masukkan tidak valid! masukkan (1-3)");
                     continue;  
                 } else {
-                    sksMhs[mahasiswa] = sks;     // ini masuk tabel
-                    sksTotal += sks;      // Menampilkan total SKS yang diinputkan per mahasiswa dan reser saat perulangan dimulai
-                    totalSKS[mahasiswa] = sksTotal; // ini berfungsi untuk function tampil data nantinya
+                    sksMhs[mahasiswa][0] = sks;     // ini masuk tabel      // Menampilkan total SKS yang diinputkan per mahasiswa dan reser saat perulangan dimulai
+                    sksTotal += sks;
+                    totalSKS[indekSks] += sks; // ini berfungsi untuk function tampil data nantinya
                 }
-                
+
                 sc.nextLine();
                 System.out.print("Tambah mata kuliah lain? (y/t): ");
                 String tambah = sc.nextLine();
                 if (tambah.equalsIgnoreCase("t")) {
-                    System.out.println("Total SKS yang diambil: " + totalSKS[mahasiswa]);
+                    System.out.println("Total SKS yang diambil: " + totalSKS[indekSks]);
                     mahasiswa++;
+                    indekSks++;
+                    break;
+                }
+
+             
+                if(sksTotal >= 24){
+                    System.out.println("Total SKS yang diambil: " + totalSKS[indekSks]);
                     break;
                 }
 
                 indeksKrs++; 
-                if(sksTotal >= 24){
-                    System.out.println("Total SKS yang diambil: " + totalSKS[mahasiswa]);
-                    break;
-                }
+                mahasiswa++;
+                
+                
             }  
             break;
         }
@@ -113,16 +115,15 @@ public class StudyKasusfix {
                  
                 for(int j = 0; j < dataKrs[i].length; j++){
                     if (dataKrs[i][j] != null) {
-                        System.out.print("\t" + dataMhs[index][0] + "\t\t" + dataMhs[index][1]);
-                        System.out.print("\t\t" + dataKrs[tempat][j]);
+                        System.out.print("\t" + dataMhs[index][0] + "\t\t" + dataMhs[index][1]); 
                     }
-                    System.out.print("\t\t\t\t" + sksMhs[tempat]);
+                    System.out.print("\t\t" + dataKrs[tempat][0] + "\t\t" + dataKrs[tempat][1]);
+                    System.out.print("\t\t\t\t" + sksMhs[tempat][0]);
                     System.out.println();
                     tempat++;
                 }
-                
                 System.out.println();
-                System.out.print("Total SKS: " + totalSKS[index]);
+                System.out.print("Total SKS: " + totalSKS[0]);
             } 
         }   
     }
@@ -135,7 +136,6 @@ public class StudyKasusfix {
                 count++;                                        // Jika totalSKS[i] < 20 maka akan menambahkan value count + 1
             }
         }
-
         System.out.println("Jumlah Mahasiswa yang mengambil SKS kurang dari 20: " + count);
     }
 }
